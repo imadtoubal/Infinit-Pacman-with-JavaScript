@@ -1,13 +1,15 @@
 let cols, rows;
-let size = 20;
+let size = 24;
 let grid = [];
 let stack = [];
-
+let coins = [];
+let score = 0;
+let scoreStr;
 
 let realTime = true;
-let framerate = 30;
+let framerate = 24;
 let frameCount = 0;
-let updateFrequency = 15;
+let updateFrequency = 8	;
 
 let path;
 let current;
@@ -22,7 +24,7 @@ let mazeMap = false;
 
 
 function setup() {
-	createCanvas(720, 600);
+	createCanvas(480, 480);
 	frameRate(framerate);
 	cols = floor(width / size);
 	rows = floor(height / size);
@@ -50,6 +52,7 @@ function setup() {
 	for (let r = 0; r < rows; r++) {
 		for (let c = 0; c < cols; c++) {
 			grid.push(new Cell(r, c));
+			coins.push(true);
 		}
 	}
 
@@ -63,15 +66,24 @@ function setup() {
 	if(pacman) {
 		player = new Player();
 	}
+
+	//score
+	if(pacman) {
+		scoreStr = createP("Score: " + score);
+	}
 }
 
 function draw() {
 	background(theme.background);
-	highlightCells(exploredCells);
+	if(verbose) {
+		highlightCells(exploredCells);
+	}
 
 	if(pacman) {
 		player.update();
 		player.show();
+		showCoins();
+		scoreStr.html("Score: " + score);
 	}
 
 	for (const cell of grid) {
@@ -83,6 +95,7 @@ function draw() {
 
 	enemy.step();
 	enemy.show();
+	
 	// alert('imad');
 	if(!pacman) {
 		showGoal();

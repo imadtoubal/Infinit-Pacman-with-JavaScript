@@ -4,6 +4,16 @@ function showGoal() {
 	ellipse(goal.c * size + size / 2, goal.r * size + size / 2, size / 2);
 }
 
+function showCoins() {
+	for (const i in coins) {
+		// console.log('make it rain');
+		if (coins[i] === true) {
+			noStroke();
+			fill(theme.player);
+			ellipse(grid[i].c * size + size / 2, grid[i].r * size + size / 2, size / 6);
+		}
+	}
+}
 
 function randomMap() {
 	for (const cell of grid) {
@@ -111,7 +121,17 @@ function highlightCells(cells) {
 		let x = cell.c * size;
 		let y = cell.r * size;
 		noStroke();
-		fill(0,255, 255, 60);
+		fill(0, 255, 255, 60);
 		rect(x, y, size, size);
 	}
+}
+
+function areNeighbors(c1, c2) {
+	if (c1 && c2) {
+		for (const n of c1.neighbors) {
+			if (n == c2)
+				return true;
+		}
+	}
+	return false;
 }
