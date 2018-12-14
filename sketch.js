@@ -30,7 +30,7 @@ function preload() {
 }
 
 function setup() {
-	randomSeed(1);
+	// randomSeed(1);
 	// debugger;
 	createCanvas(480, 480);
 	frameRate(framerate);
