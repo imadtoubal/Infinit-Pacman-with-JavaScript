@@ -1,4 +1,5 @@
 function Player() {
+	this.cell = goal.c + (goal.r * rows);
 	this.x = goal.c * size + size / 2;
 	this.y = goal.r * size + size / 2;
 	this.s = (size / updateFrequency);
@@ -13,9 +14,14 @@ function Player() {
 	}
 
 	this.update = function () {
-		let currentIndex = getIndex(round((this.y - size / 2) / size), round((this.x - size / 2) / size))
+		let currentIndex = getIndex(round((this.y - size / 2) / size), round((this.x - size / 2) / size));
 		let currentCell = grid[currentIndex];
-		let nextCell = grid[getIndex(round((this.y - size / 2) / size) + this.dir.y, round((this.x - size / 2) / size) + this.dir.x)];
+		this.cell = currentIndex;
+		let nextIndex = getIndex(round((this.y - size / 2) / size) + this.dir.y, round((this.x - size / 2) / size) + this.dir.x);
+		let nextCell = grid[nextIndex];; 
+		// if(this.x - grid[nextIndex].c * size > 5 && this.x - grid[nextIndex].c * size > 5 ) {
+		// 	return;
+		// } 
 		// let nextCellCoordinates = {
 		// 	x: nextCell.c * size + size / 2,
 		// 	y: nextCell.r * size + size / 2
@@ -45,10 +51,10 @@ function Player() {
 		}
 
 		if(this.dir.x == 0) {
-			this.x = currentCell.c * size + size / 2;
+			this.x = lerp(this.x, currentCell.c * size + size / 2, .5);
 		}
 		if(this.dir.y == 0) {
-			this.y = currentCell.r * size + size / 2;
+			this.y = lerp(this.y, currentCell.r * size + size / 2, .5);
 		}
 	}
 

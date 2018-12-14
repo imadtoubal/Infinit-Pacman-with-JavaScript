@@ -135,3 +135,14 @@ function areNeighbors(c1, c2) {
 	}
 	return false;
 }
+
+function displayHeuristics() {
+	for (const cell of grid) {
+		let x = cell.c * size + size / 2;
+		let y = cell.r * size + size / 2;
+		textAlign(CENTER, CENTER);
+		color(255, 0, 0);
+		noFill();
+		text(cell.heuristic, x, y);
+	}
+}
