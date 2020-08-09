@@ -1,4 +1,4 @@
-# Infinit-Pacman-with-JavaScript
+# Infinit Pacman with JavaScript
 Infinit Pacman with JavaScript. Using multiple path-finding algorithms: A*, Greedy Best First Search,  and Hill Climbing Search
 
 [Try Demo Here](https://imadtoubal.github.io/Infinit-Pacman-with-JavaScript/)
